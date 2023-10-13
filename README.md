@@ -19,3 +19,4 @@ Un poco del funcionamiento:
 - ALGO QUE OLVIDE HACER EN EL VIDEO: Si existe algun vivo que quiere irse directo a 'recetas/' para visualizar todas las recetas pues sera redirigido automaticamente a login de esa forma impidiendo que vea recetas si no se loguea y asi con todas las demas rutas que no aparecen al inicio (Home, acerca de, login y registrarse).
 
 # Pues no creo que haya olvidado algo, si es asi espero que pruebe y maneje a antojo la pagina web, espero la retroalimentacion de ello. Gracias por estos meses de grandes conocimientos.
+Comparto el enlace del video que realice con las pruebas de funcionamiento y tambien el excel se encuentra en el directorio llamado 'Casos de prueba-Mi_Recetario.xlsx': https://drive.google.com/file/d/1h5BG0WNO00yEpUvl9XJguWc0va52h66P/view?usp=drive_link
