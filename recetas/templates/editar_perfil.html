@@ -1,0 +1,21 @@
+{% extends 'padre2_recetas.html' %}
+
+{% block content %}
+<section>
+    
+<h1 class="text-center"> Formulario - Editar Perfil </h1>
+
+
+    <form action="" class="d-flex flex-column align-items-center mt-5" method="POST">
+        {% csrf_token %}
+        <table >
+                {{miFormulario.as_table}}
+    
+        </table>
+        <br>
+        <input type="submit", value="Actualizar los datos">
+    </form>
+
+</section>
+
+{% endblock %}

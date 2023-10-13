@@ -1,0 +1,57 @@
+{% extends 'padre2_recetas.html' %}
+
+{% block content %}
+
+<main>
+
+    
+    <section>
+        <h1 class="text-center"> Mis Recetas </h1>
+        <div class="mt-5">
+            <div class="row">
+                <div class="col-md-8"></div> <!-- Columna vacía para espacio en blanco a la izquierda -->
+                <div class="col-md-4">
+                    <form method="GET" action="{% url 'recetas' %}">
+                        <div class="form-row">
+                            <div class="col-8"> <!-- Ancho del 66.67% para el campo de entrada -->
+                                <input type="text" name="q" class="form-control" placeholder="Buscar por título, ingredientes o preparación" value="{{ request.GET.q }}">
+                            </div>
+                            <div class="col-4"> <!-- Ancho del 33.33% para el botón -->
+                                <button type="submit" class="btn btn-primary">Buscar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="page-section bg-light" id="portfolio">
+        <div class="container">
+            <div class="row">
+                {% for receta in recetas %}
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="{% url 'recetas_detail' receta.id %}">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content">
+                                        <i class="fas fa-plus fa-3x"></i>
+                                    </div>
+                                </div>
+                                <img class="img-fluid" src="{{ receta.imagen_redimensionada.url }}" alt="{{ receta.title }}" />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading text-uppercase">{{ receta.title }}</div>
+                                <div class="portfolio-caption-subheading text-muted">Publicado por: {{ receta.autor }}</div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>  
+        </div>
+    </section>
+    
+    
+</main>
+
+{% endblock %}

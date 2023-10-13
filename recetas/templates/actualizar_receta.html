@@ -1,0 +1,29 @@
+{% extends 'padre2_recetas.html' %}
+
+
+{% block content %}
+<div class="container">
+    <section class="d-flex flex-column align-items-center">
+        <div class="card">
+            <div class="card-body">
+                <h1 class=" mt-5 text-center"> Actualizar Receta </h1>
+                <br>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <!-- Agregar el campo de archivo para la imagen -->
+                    <input type="file" name="imagen_p">
+                    <button class="btn btn-primary">
+                        Actualizar Receta
+                    </button>
+                </form>
+                <a href="{% url 'recetas_detail' recetas_id=recetas.id %}">Volver a recetas</a>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+
+
+

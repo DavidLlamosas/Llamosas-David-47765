@@ -1,0 +1,85 @@
+{% extends 'padre2_recetas.html' %}
+
+{% block content %}
+<head>
+    <!-- Otros elementos del encabezado -->
+    {% load static %}
+    <!-- Vincula tu archivo CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'recetas/css/styles_recetas.css' %}">
+    
+</head>
+
+<section>
+
+
+    <h1 style="margin-bottom: 10px;" class="masthead-heading text-uppercase">{{ recetas.title }}</h1>
+    
+    <p style="font-size: 12px; color: #888;">Fecha de creación: {{ recetas.fecha_creation|date:"Y-m-d H:i" }}</p>
+
+    <br>
+    <br>
+    <p class="text-justify col-md-8 mx-auto">Ingredientes:</p>
+
+    <p class="text-justify col-md-8 mx-auto">{{ recetas.ingredientes }}</p>
+    <br>
+    <br>
+    <p class="text-justify col-md-8 mx-auto">Preparación:</p>
+    <p class="text-justify col-md-8 mx-auto"">{{ recetas.preparacion }}</p>
+    <br>
+    {% if recetas.imagen_p %}
+        <p></p>
+        <div class="text-center">
+            <img src="{{ recetas.imagen_p.url }}" alt="{{ recetas.title }} Image" />
+        </div>
+    {% endif %}
+    <br>
+    {% if recetas.fecha_actualizada %}
+        <p style="font-weight: bold;">Última actualización de "{{ recetas.title }}" el {{ recetas.fecha_actualizada|date:"Y-m-d, H:i" }}</p>
+    {% else %}
+        <p>Nunca ha sido actualizada esta receta</p>
+    {% endif %}
+
+    {{ error }}
+
+    {% if request.user.id == recetas.autor.id %}
+    <div>
+        <a href="{% url 'actualizar_receta' recetas_id=recetas.id %}">
+            <button class="btn btn-primary">Actualizar Receta</button>
+            <br>
+        </a>
+    </div>
+    <br>
+    <form action="{% url 'delete_receta' recetas.id %}" method="POST">
+        {% csrf_token %}
+        <button class="btn btn-dark">
+            Borrar Receta
+        </button>
+    </form>
+    {% endif %}
+
+    <br>
+    <br>
+    <br>
+    <p>Calificado por +{{ recetas.calificacion_set.count|add:"0" }} usuarios registrados</p>
+    <p>Puntaje Promedio: {{ puntaje_promedio }}</p>
+    
+    
+    <form method="post" action="{% url 'calificar_receta' recetas.id %}">
+        {% csrf_token %}
+        {{ form.calificacion.label_tag }}
+        <div class="calificacion-options">
+            {% for option in form.calificacion %}
+                {{ option.tag }}
+            {% endfor %}
+        </div>
+        <button type="submit">Calificar</button>
+    </form>
+    <br>
+    <br>
+    <br>
+    
+        <a href="{% url 'recetas' %}">Volver a recetas</a>
+    
+</section>
+
+{% endblock %}

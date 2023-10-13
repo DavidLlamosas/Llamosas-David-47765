@@ -1,0 +1,26 @@
+{% extends 'padre2_recetas.html' %}
+
+{% block content %}
+<main class="container">
+    <section class="d-flex flex-column align-items-center">
+
+        <br>
+        <div class="card">
+            <div class="card-body">
+                <form action="/recetas/create/" method="POST" enctype="multipart/form-data">
+                    <h1 class="mt-5 text-center"> Publicando recetas </h1>
+                    {{ error }}
+                    <br>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <!-- Agregar el campo de archivo para la imagen -->
+                    <input type="file" name="imagen_p">
+                    <button type="submit" class="btn btn-primary">
+                        Publicar Receta
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
