@@ -64,15 +64,18 @@
                             
                             {% endif %}
 
+                            {% if request.path == '/editar_perfil/' %}    <!--  -->
+                            <li class="nav-item"><a class="nav-link" href="/editar_perfil/agregar_avatar">Cambiar Avatar</a></li>
+                            {% endif %}
 
                         <li class="nav-item"><a class="nav-link" href="/editar_perfil">Editar perfil</a></li>
-                        {% with user.avatar_set.first as imgAvatar %}
-                        {% if imgAvatar %}
-                            <img class="rounded-circle img-fluid" src="{{imgAvatar.imagen.url}}" alt="ImgAvatar" style="max-width: 30px;">
-                            {% else %}
+                        
+                        {% if user.avatar %}
+                        <div>
+                            <img src="{{ user.avatar.imagen.url }}" alt="Avatar" style="max-width: 30px;" class="rounded-circle img-fluid">
+                        </div>
+                        {% endif %}   
 
-                        {% endif %}
-                        {% endwith %}                    
                         <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
 
                         {% else %}

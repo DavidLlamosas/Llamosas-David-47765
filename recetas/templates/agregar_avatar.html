@@ -1,0 +1,26 @@
+{% extends 'padre2_recetas.html' %}
+
+{% block content %}
+
+<section>
+    <h1 class="text-center"> Formulario - Editar Avatar </h1>
+    {% if user.avatar %}
+        <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
+            <img src="{{ user.avatar.imagen.url }}" alt="Avatar" style="width: 300px; height: 300px;">
+        </div>
+    {% endif %}
+    
+<div class="form-container" style="display: flex; justify-content: center; align-items: center;">
+
+        <form method="POST" action="{% url 'agregar_avatar' %}" class="form-carga" enctype = "multipart/form-data"> {% csrf_token %}
+
+                    {{ form.as_p }}
+
+                <input class= "btn btn-primary btn-lg px-4 me-sm-3" type="submit" value="Guardar">
+
+        </form>
+
+</div>
+</section>
+
+{% endblock %}

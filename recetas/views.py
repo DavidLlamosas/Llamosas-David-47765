@@ -24,6 +24,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 
 from .forms import UserEditForm
+from .forms import AvatarForm
 
 from .models import Avatar
 
@@ -226,24 +227,39 @@ def calificar_receta(request, recetas_id):
 
 @login_required
 def editarPerfil(request):
-
     usuario = request.user
-    if request.method == 'POST':
-        miFormulario = UserEditForm(request.POST)
 
-        if miFormulario.is_valid:
+    if request.method == 'POST':
+        miFormulario = UserEditForm(request.POST, instance=request.user)
+
+        if miFormulario.is_valid():
             informacion = miFormulario.cleaned_data
 
             usuario.email = informacion['email']
-            usuario.password1 = informacion['password1']
-            usuario.password2 = informacion['password2']
+            usuario.set_password(informacion['password1'])
+            usuario.last_name = informacion['last_name']
+            usuario.first_name = informacion['first_name']
             usuario.save()
 
-            return render(request,'')
+            return redirect('login1')
     else:
-        miFormulario = UserEditForm(initial={'email':usuario.email})
+        miFormulario = UserEditForm(instance=request.user)
 
-    return render(request,'editar_perfil.html',{"miFormulario":miFormulario, "usuario":usuario})
+    return render(request, 'editar_perfil.html', {"miFormulario": miFormulario, "usuario": usuario})
+
+def agregar_avatar(request):
+    if request.method == "POST":
+        form = AvatarForm(request.POST, request.FILES)
+        if form.is_valid():
+            avatar_anterior = Avatar.objects.filter(user=request.user)
+            if (len(avatar_anterior) > 0):
+                avatar_anterior.delete()
+            avatar_nuevo = Avatar(user=request.user, imagen=form.cleaned_data["imagen"])
+            avatar_nuevo.save()
+            return redirect('agregar_avatar')
+    else:
+        form = AvatarForm()
+    return render(request, 'agregar_avatar.html', {"form": form})
 
 
 

@@ -36,13 +36,13 @@
                         <li class="nav-item"><a class="nav-link" href="/recetas/create">Publicar una receta</a></li>
                         <li class="nav-item"><a class="nav-link" href="#about">Acerca de</a></li>
                         <li class="nav-item"><span class="nav-link">¡Hola, {{ user.username }}!</span></li>
-                        {% with user.avatar_set.first as imgAvatar %}
-                        {% if imgAvatar %}
-                            <img class="rounded-circle img-fluid" src="{{imgAvatar.imagen.url}}" alt="ImgAvatar" style="max-width: 30px;">
-                            {% else %}
-                            
-                        {% endif %}
-                        {% endwith %} 
+                        
+                        {% if user.avatar %}
+                        <div>
+                            <img src="{{ user.avatar.imagen.url }}" alt="Avatar" style="max-width: 30px;" class="rounded-circle img-fluid">
+                        </div>
+                        {% endif %}  
+
                         <li class="nav-item"><a class="nav-link" href="/editar_perfil">Editar perfil</a></li>
                           
                         <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>

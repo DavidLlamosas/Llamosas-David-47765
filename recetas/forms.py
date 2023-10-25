@@ -34,3 +34,7 @@ class UserEditForm(UserCreationForm):
             model = User
             fields = ['email', 'password1', 'password2',
             'last_name', 'first_name']
+
+class AvatarForm(forms.Form):
+    imagen = forms.ImageField(label="Imagen de Avatar")
+    
