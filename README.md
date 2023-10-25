@@ -20,3 +20,10 @@ Un poco del funcionamiento:
 
 # Pues no creo que haya olvidado algo, si es asi espero que pruebe y maneje a antojo la pagina web, espero la retroalimentacion de ello. Gracias por estos meses de grandes conocimientos.
 Comparto el enlace del video que realice con las pruebas de funcionamiento y tambien el excel se encuentra en el directorio llamado 'Casos de prueba-Mi_Recetario.xlsx': https://drive.google.com/file/d/1h5BG0WNO00yEpUvl9XJguWc0va52h66P/view?usp=drive_link
+
+# Nueva actualizacion:
+- Se añadió lo que es el cambio o edicion de los datos del perfil, tambien se añadió el poder cambiar avatares desde "Editar perfil".
+- Se mejoraron algunos errores.
+
+Comparte el enlace del video de la version 5.0 de Recetas+
+https://drive.google.com/file/d/1tRuarTcvMiXisp0uf9ksusuo7yZPle4l/view
